@@ -7,18 +7,17 @@ import re
 # === 個人化設定區 ===
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 FILENAME = "apps.json"
-# 這裡維持你的 GitHub 帳號，用於部署網頁
 YOUR_GITHUB_ID = "tsai97216" 
-# 商店顯示名稱改為 Chi
 DISPLAY_NAME = "Chi" 
 
 SOURCE_URL = f"https://{YOUR_GITHUB_ID}.github.io/My-AltStore-Source/{FILENAME}"
 
-# 1. 商店圖標 (使用你指定的 .PNG 大寫連結)
+# 1. 商店圖標
 SOURCE_ICON_URL = f"https://raw.githubusercontent.com/{YOUR_GITHUB_ID}/My-AltStore-Source/main/source_icon.PNG"
 
-# 2. 顏色設定 (嫩綠色)
-LIGHT_GREEN = "7DCEA0" 
+# 2. 顏色設定
+COLOR_PILI = "7DCEA0" # 嫩綠色
+COLOR_IG = "E1306C"   # Instagram 紅粉色
 
 # --- 待抓取的 App 清單 ---
 APPS_TO_TRACK = [
@@ -29,17 +28,18 @@ APPS_TO_TRACK = [
         "icon": "https://raw.githubusercontent.com/bggRGjQaUbCoE/PiliPlus/main/assets/images/logo/desktop/logo_large.png",
         "subtitle": "第三方 Bilibili iOS 客戶端增強版",
         "desc": "提供自動全螢幕、音量均衡、彈幕過濾等豐富功能。",
+        "color": COLOR_PILI,
         "smart_version": False 
     },
     {
         "repo": "6gr8/IGFormat",
         "name": "IGFormat",
         "bundleID": "com.6gr8.IGFormat",
-        # [修改] 更新為你找的高清 Raw PNG 連結
         "icon": "https://raw.githubusercontent.com/6gr8/IGFormat/main/IGFormatLogo.png", 
         "subtitle": "Instagram 增強工具",
         "desc": "Instagram 內容排版與功能增強插件。",
-        "smart_version": True # 開啟智慧模式：從檔名抓版本號
+        "color": COLOR_IG, # 使用你指定的 E1306C
+        "smart_version": True 
     }
 ]
 
@@ -52,7 +52,6 @@ def get_sha1(url):
     return sha1.hexdigest()
 
 def extract_version_from_filename(filename, fallback_tag):
-    # 使用正則表達式尋找像 1.2.3 或 2.0 這樣的版本號數字
     match = re.search(r'(\d+\.\d+(\.\d+)?)', filename)
     if match:
         return match.group(1)
@@ -75,7 +74,6 @@ def get_app_data(config):
         print(f"❌ {config['name']} 找不到 IPA")
         return None
 
-    # --- 版本號智慧處理 ---
     raw_tag = data["tag_name"].replace('v', '')
     ipa_name = ipa_asset["name"]
     
@@ -93,7 +91,7 @@ def get_app_data(config):
         "subtitle": config["subtitle"],
         "localizedDescription": config["desc"],
         "iconURL": config["icon"],
-        "tintColor": LIGHT_GREEN,
+        "tintColor": config["color"],
         "category": "social",
         "screenshots": [],
         "versions": [
@@ -121,7 +119,7 @@ def update_source():
         "identifier": f"com.{DISPLAY_NAME.lower()}.custom.source",
         "sourceURL": SOURCE_URL,
         "subtitle": "收集好用的 iOS 增強版 App",
-        "description": f"這是 {DISPLAY_NAME} 維護的個人 AltStore 來源，專注於提供最新、最穩定的修改版 App 更新。",
+        "description": f"這是 {DISPLAY_NAME} 維護的個人 AltStore 來源，提供最新修改版 App 更新。",
         "website": f"https://github.com/{YOUR_GITHUB_ID}/My-AltStore-Source",
         "iconURL": SOURCE_ICON_URL,
         "featuredApps": [app["bundleIdentifier"] for app in all_apps],
@@ -131,7 +129,7 @@ def update_source():
 
     with open(FILENAME, "w", encoding="utf-8") as f:
         json.dump(source_data, f, indent=2, ensure_ascii=False)
-    print(f"🎉 更新完成！IGFormat 已啟用新圖標。")
+    print(f"🎉 更新完成！IGFormat 已改為紅粉色主題。")
 
 if __name__ == "__main__":
     update_source()
