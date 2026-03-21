@@ -1,60 +1,64 @@
 import os
 import json
-from altparse import AltSourceManager, Parser, altsource_from_file
+import logging
+from altparse import AltSourceManager, Parser
 
-# === 基礎設定區 ===
+# 開啟日誌模式，這樣我們在 Actions 裡可以看到更多細節
+logging.basicConfig(level=logging.INFO)
+
 FILENAME = "apps.json" 
 YOUR_GITHUB_USERNAME = "tsai97216" 
 SOURCE_NAME = "Tsai 的私人商店" 
-
-# 自動取得 GitHub Actions 提供給腳本的 VIP 通行證
+# 確保從環境變數抓取 Token，如果抓不到也沒關係（會用匿名方式連線）
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
-# 1. 確保基礎 JSON 檔案存在，防止讀取失敗
-if not os.path.exists(FILENAME):
-    initial_source = {
-        "name": SOURCE_NAME,
-        "identifier": f"com.{YOUR_GITHUB_USERNAME}.custom.source",
-        "apps": []
-    }
-    with open(FILENAME, 'w', encoding='utf-8') as f:
-        json.dump(initial_source, f, indent=2, ensure_ascii=False)
+# 1. 建立一個全新的、基礎的 Source 結構 (避免讀取舊檔失敗)
+new_source = {
+    "name": SOURCE_NAME,
+    "identifier": f"com.{YOUR_GITHUB_USERNAME}.custom.source",
+    "apps": []
+}
 
-# 2. 載入現有資料
-src = altsource_from_file(FILENAME)
-
-# 3. 定義你要自動追蹤的 App 列表
+# 2. 定義要抓取的清單
 apps_to_track = [
     {
         "parser": Parser.GITHUB,
         "kwargs": {
             "repo_author": "bggRGjQaUbCoE",
             "repo_name": "PiliPlus",
-            "prefer_date": True,
-            # 強制只抓取結尾是 .ipa 的檔案，過濾掉 Android 或電腦版
-            "asset_filters": [r".*\.ipa$"] 
+            "prefer_date": True
         },
-        "ids": [] # 設為空代表自動偵測，不限制 Bundle ID
-    },
-    # 未來要加新 App，只需複製上面的 {} 區塊貼在下面
+        "ids": [] # 改成空列表，不限制 ID
+    }
 ]
 
-# 4. 執行更新與雜湊計算
-print(f"🚀 開始從 GitHub 抓取專案資料...")
-# 加入 github_token 確保下載 IPA 計算 Hash 時不會被 GitHub 阻擋
-srcmgr = AltSourceManager(src, apps_to_track, github_token=GITHUB_TOKEN)
+print(f"🔍 正在連線至 GitHub 抓取專案: bggRGjQaUbCoE/PiliPlus...")
 
+# 3. 初始化管理員，加入更強的錯誤捕捉
 try:
+    # 這裡我們不帶舊檔案，直接用 new_source 開始
+    srcmgr = AltSourceManager(new_source, apps_to_track, github_token=GITHUB_TOKEN)
+    
+    # 執行更新，並手動檢查結果
     srcmgr.update()
     
-    if not srcmgr.src.get("apps"):
-        print("❌ 錯誤：Parser 沒有找到任何有效的 App。請檢查 GitHub 是否有發布 IPA。")
+    # 檢查抓到的結果是否為 None 或空
+    apps_list = srcmgr.src.get("apps")
+    if apps_list is None:
+        print("❌ 錯誤：GitHub API 回傳了空結果 (None)。這可能是因為 API 被限速或 Token 失效。")
+    elif len(apps_list) == 0:
+        print("⚠️ 警告：成功連線但沒找到任何符合條件的 IPA 檔案。")
     else:
-        print(f"✅ 成功找到 {len(srcmgr.src['apps'])} 個項目！")
-        print("正在計算檔案 Hash (這需要 1-2 分鐘)...")
-        srcmgr.update_hashes() 
-        srcmgr.save(prettify=True)
-        print(f"🎉 更新完成！檔案已儲存至 {FILENAME}")
+        print(f"✅ 成功找到 {len(apps_list)} 個項目！正在計算 Hash...")
+        # 只有在有抓到 App 的情況下才計算 Hash
+        srcmgr.update_hashes()
         
+        # 強制寫入檔案
+        with open(FILENAME, 'w', encoding='utf-8') as f:
+            json.dump(srcmgr.src, f, indent=2, ensure_ascii=False)
+        print(f"💾 更新成功！檔案已儲存至 {FILENAME}")
+
 except Exception as e:
-    print(f"❌ 執行出錯: {e}")
+    # 捕捉具體的錯誤位置
+    import traceback
+    print(f"❌ 發生嚴重錯誤：\n{traceback.format_exc()}")
