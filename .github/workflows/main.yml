@@ -2,14 +2,14 @@ name: Auto Update Apps
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 每天台灣時間早上 8 點自動執行
-  workflow_dispatch: # 讓你可以手動點擊執行測試
+    - cron: '0 0 * * *' # 每天凌晨自動執行
+  workflow_dispatch: # 允許手動點擊按鈕執行
 
 jobs:
   run-update:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # 必須有寫入權限才能更新 apps.json
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -23,10 +23,13 @@ jobs:
         run: pip install altparse
 
       - name: Execute Script
+        env:
+          # 將 GitHub 內建 Token 傳給 Python 腳本使用
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python update_source.py
 
       - name: Save Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Automated update apps.json"
+          commit_message: "Automated update apps.json via GitHub Actions"
           file_pattern: 'apps.json'
