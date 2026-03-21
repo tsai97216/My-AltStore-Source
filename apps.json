@@ -1,20 +1,45 @@
 {
   "name": "Tsai 的私人商店",
   "identifier": "com.tsai97216.custom.source",
+  "sourceURL": "https://tsai97216.github.io/My-AltStore-Source/apps.json",
+  "subtitle": "收集好用的 iOS 增強版 App",
+  "description": "這是 Tsai 維護的個人 AltStore 來源，專注於提供最新、最穩定的修改版 App 更新。",
+  "website": "https://github.com/tsai97216/My-AltStore-Source",
   "iconURL": "https://raw.githubusercontent.com/tsai97216/My-AltStore-Source/main/source_icon.png",
+  "featuredApps": [
+    "com.bgg.piliplus"
+  ],
   "apps": [
     {
       "name": "PiliPlus",
       "bundleIdentifier": "com.bgg.piliplus",
       "developerName": "bggRGjQaUbCoE",
-      "version": "2.0.1.1",
-      "versionDate": "2026-03-15",
-      "versionDescription": "修复自动全屏\r\n修复有音频流时才启用音量均衡 #1865 by @HeXis-YS\r\n其他\r\n\r\n## 2.0.1\r\n页面优化\r\n优化收起顶栏\r\n优化 #1864 by @My-Responsitories\r\n优化加载搜索历史 #1858 by @My-Responsitories\r\n\r\niOS 支持添加 UP 至桌面\r\n支持显示用户收藏集头图\r\n直播封面支持切换预览首帧\r\n支持显示`精选评论`标识 #1857 co-by @Dxee-e\r\n支持记录评论，默认开 by @bggRGjQaUbCoE @My-Responsitories\r\n\r\n修复自动全屏\r\n修复动态链接显示",
-      "downloadURL": "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.1.1/PiliPlus_ios_2.0.1%2B4775.ipa",
-      "localizedDescription": "PiliPlus 增強版：修復自動全螢幕、音量均衡，支持彈幕自定義等功能。",
+      "subtitle": "第三方 Bilibili iOS 客戶端增強版",
+      "localizedDescription": "PiliPlus 是一款強大的 Bilibili 第三方客戶端，提供自動全螢幕、音量均衡、彈幕過濾等豐富功能，帶給你更純粹的觀影體驗。",
       "iconURL": "https://raw.githubusercontent.com/bggRGjQaUbCoE/PiliPlus/main/assets/images/logo/desktop/logo_large.png",
-      "size": 25000751,
-      "sha1hash": "98657b024477bcb1228f1f908acfe514ca58853f"
+      "tintColor": "fb7299",
+      "category": "entertainment",
+      "screenshots": [],
+      "appPermissions": {
+        "entitlements": [
+          "aps-environment"
+        ],
+        "privacy": {
+          "NSPhotoLibraryUsageDescription": "需要權限以儲存圖片或影片",
+          "NSLocalNetworkUsageDescription": "需要權限以連接本地伺服器"
+        }
+      },
+      "versions": [
+        {
+          "version": "2.0.1.1",
+          "date": "2026-03-15",
+          "localizedDescription": "修复自动全屏\r\n修复有音频流时才启用音量均衡 #1865 by @HeXis-YS\r\n其他\r\n\r\n## 2.0.1\r\n页面优化\r\n优化收起顶栏\r\n优化 #1864 by @My-Responsitories\r\n优化加载搜索历史 #1858 by @My-Responsitories\r\n\r\niOS 支持添加 UP 至桌面\r\n支持显示用户收藏集头图\r\n直播封面支持切换预览首帧\r\n支持显示`精选评论`标识 #1857 co-by @Dxee-e\r\n支持记录评论，默认开 by @bggRGjQaUbCoE @My-Responsitories\r\n\r\n修复自动全屏\r\n修复动态链接显示",
+          "downloadURL": "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.1.1/PiliPlus_ios_2.0.1%2B4775.ipa",
+          "size": 25000751,
+          "sha1hash": "98657b024477bcb1228f1f908acfe514ca58853f"
+        }
+      ]
     }
-  ]
+  ],
+  "news": []
 }
