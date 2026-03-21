@@ -5,7 +5,7 @@
   "subtitle": "收集好用的 iOS 增強版 App",
   "description": "這是 Tsai 維護的個人 AltStore 來源，專注於提供最新、最穩定的修改版 App 更新。",
   "website": "https://github.com/tsai97216/My-AltStore-Source",
-  "iconURL": "https://raw.githubusercontent.com/tsai97216/My-AltStore-Source/main/source_icon.png",
+  "iconURL": "https://raw.githubusercontent.com/tsai97216/My-AltStore-Source/main/source_icon.PNG",
   "featuredApps": [
     "com.bgg.piliplus"
   ],
@@ -15,9 +15,9 @@
       "bundleIdentifier": "com.bgg.piliplus",
       "developerName": "bggRGjQaUbCoE",
       "subtitle": "第三方 Bilibili iOS 客戶端增強版",
-      "localizedDescription": "PiliPlus 是一款強大的 Bilibili 第三方客戶端，提供自動全螢幕、音量均衡、彈幕過濾等豐富功能，帶給你更純粹的觀影體驗。",
+      "localizedDescription": "PiliPlus 是一款強大的 Bilibili 第三方客戶端，提供自動全螢幕、音量均衡、彈幕過濾等豐富功能。",
       "iconURL": "https://raw.githubusercontent.com/bggRGjQaUbCoE/PiliPlus/main/assets/images/logo/desktop/logo_large.png",
-      "tintColor": "fb7299",
+      "tintColor": "34C759",
       "category": "entertainment",
       "screenshots": [],
       "appPermissions": {
