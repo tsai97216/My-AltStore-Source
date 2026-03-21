@@ -3,7 +3,7 @@
   "identifier": "com.chi.custom.source",
   "sourceURL": "https://tsai97216.github.io/My-AltStore-Source/apps.json",
   "subtitle": "收集好用的 iOS 增強版 App",
-  "description": "這是 Chi 維護的個人 AltStore 來源，專注於提供最新、最穩定的修改版 App 更新。",
+  "description": "這是 Chi 維護的個人 AltStore 來源，提供最新修改版 App 更新。",
   "website": "https://github.com/tsai97216/My-AltStore-Source",
   "iconURL": "https://raw.githubusercontent.com/tsai97216/My-AltStore-Source/main/source_icon.PNG",
   "featuredApps": [
@@ -39,7 +39,7 @@
       "subtitle": "Instagram 增強工具",
       "localizedDescription": "Instagram 內容排版與功能增強插件。",
       "iconURL": "https://raw.githubusercontent.com/6gr8/IGFormat/main/IGFormatLogo.png",
-      "tintColor": "7DCEA0",
+      "tintColor": "E1306C",
       "category": "social",
       "screenshots": [],
       "versions": [
