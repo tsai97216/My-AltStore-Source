@@ -7,7 +7,7 @@ import re
 # === 個人化設定區 ===
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 FILENAME = "apps.json"
-# 這裡維持你的 GitHub 帳號，用於抓取圖片與部署網頁
+# 這裡維持你的 GitHub 帳號，用於部署網頁
 YOUR_GITHUB_ID = "tsai97216" 
 # 商店顯示名稱改為 Chi
 DISPLAY_NAME = "Chi" 
@@ -35,7 +35,8 @@ APPS_TO_TRACK = [
         "repo": "6gr8/IGFormat",
         "name": "IGFormat",
         "bundleID": "com.6gr8.IGFormat",
-        "icon": "https://github.com/6gr8.png", 
+        # [修改] 更新為你找的高清 Raw PNG 連結
+        "icon": "https://raw.githubusercontent.com/6gr8/IGFormat/main/IGFormatLogo.png", 
         "subtitle": "Instagram 增強工具",
         "desc": "Instagram 內容排版與功能增強插件。",
         "smart_version": True # 開啟智慧模式：從檔名抓版本號
@@ -130,7 +131,7 @@ def update_source():
 
     with open(FILENAME, "w", encoding="utf-8") as f:
         json.dump(source_data, f, indent=2, ensure_ascii=False)
-    print(f"🎉 更新完成！商店已更名為 {DISPLAY_NAME} 的私人商店。")
+    print(f"🎉 更新完成！IGFormat 已啟用新圖標。")
 
 if __name__ == "__main__":
     update_source()
