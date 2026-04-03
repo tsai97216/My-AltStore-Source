@@ -27,7 +27,7 @@
           "localizedDescription": "性能优化\r\n优化查看图片\r\n优化滑动隐藏 FAB\r\n\r\n支持显示粉丝勋章，默认开\r\n校验 loudnorm 参数 #1871 by @Starfallan\r\n优化 #1868 #1877 by @My-Responsitories\r\nmacOS 启用媒体通知管理 #1872 by @stephen-zeng\r\n添加 Web 端用户投稿，支持页码跳转，按`最多收藏`排序\r\n缓存视频固定使用 HTTP/1.1 #1870 by @HeXis-YS @My-Responsitories\r\n\r\n修复解析动态页 UP 列表 #1876 co-by @ninatan777\r\n修复 bug",
           "downloadURL": "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.2/PiliPlus_ios_2.0.2%2B4814.ipa",
           "size": 24978956,
-          "sha1hash": "160841e5eec7035f6ddd5ecb9840bb4a8bb4e155"
+          "sha1hash": "c6df62da5f7b88999db29e299dbac469e1dde0e8"
         }
       ]
     }
