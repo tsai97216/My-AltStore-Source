@@ -27,7 +27,7 @@
           "localizedDescription": "播放页优化\r\n优化视频旋转方向\r\n优化视频进度条显示 #1887 co-by @cnctem\r\n移动端屏蔽列表底部边缘滑动，避免和系统手势冲突\r\n其他",
           "downloadURL": "https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.0.4/PiliPlus_ios_2.0.4%2B4848.ipa",
           "size": 24961961,
-          "sha1hash": "5bec3beb8e5e133b902564b80b9f59b402171861"
+          "sha1hash": "6d6a087debba605df44b0d6d621a703489c94bf1"
         }
       ]
     }
